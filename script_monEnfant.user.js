@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://mon-enfant.fr/trouver-un-mode-d-accueil
 // @grant       none
-// @version     1.0
+// @version     1.1
 // @author      -
 // @description 29/04/2021 à 13:50:07
 // @grant       GM_addStyle
@@ -28,8 +28,7 @@ function download(filename, text) {
 
 
 var zNode       = document.createElement ('div');
-zNode.innerHTML = '<input type="text" id="randomizerad" name="name" required size="10">'
-                + '<button id="myButton" type="button">'
+zNode.innerHTML = '<button id="myButton" type="button">'
                 + 'extraire les données</button>'
                 ;
 zNode.setAttribute ('id', 'myContainer');
@@ -56,11 +55,17 @@ function ButtonClickAction (zEvent) {
     //var zNode       = document.createElement ('p');
     //zNode.innerHTML = 'The button was clicked.';
     //document.getElementById ("myContainer").appendChild (zNode);
-  result = ['NOM | adresse | Code postal | telephone | mail']
+  separator = '|'
+  
+  result = [`Nom ${separator} Adresse ${separator} Code postal ${separator} Ville ${separator} Telephone ${separator} Mail`]
     console.log(dataResult)
   for (let i = 0; i < dataResult.length; i++){
     let data = dataResult[i]
-    result.push(data.nom + '|' + data.adresse + '|' + data.codePostal + '|' + data.telephone + '|' + data.mail)
+    
+    const regex = /(.*) (\d{5}) (.*)/g;
+    adresseSplit = regex.exec(data.adresse)
+    
+    result.push(data.nom + separator + adresseSplit[1] + separator + data.codePostal + separator + adresseSplit[3] + separator + data.telephone + separator + data.mail)
   }
     download("export.csv", result.join('\n'))
     //document.getElementsByClassName('btn-more-results')[0]
@@ -71,13 +76,13 @@ function ButtonClickAction (zEvent) {
 //--- Style our newly added elements using CSS.
 GM_addStyle ( `
     #myContainer {
-        position:               absolute;
-        top:                    0;
-        left:                   40%;
-        font-size:              12px;
+        position:               fixed;
+        top:                    30%;
+        left:                   80%;
+        font-size:              14px;
         background:             orange;
-        border:                 3px outset black;
-        margin:                 5px;
+        border:                 5px outset black;
+        margin:                 9px;
         opacity:                0.9;
         z-index:                1100;
         padding:                5px 20px;

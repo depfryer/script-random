@@ -7,8 +7,8 @@
 // @author      -
 // @description 29/04/2021 à 13:50:07
 // @grant       GM_addStyle
-// @downloadURL https://github.com/depfryer/script-random/raw/master/script_monEnfant.user.js
-// @updateURL https://github.com/depfryer/script-random/raw/master/script_monEnfant.user.js
+// @downloadURL https://github.com/depfryer/script-random/raw/main/script_monEnfant.user.js
+// @updateURL https://github.com/depfryer/script-random/raw/main/script_monEnfant.user.js
 // ==/UserScript==
 
 

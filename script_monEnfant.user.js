@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://mon-enfant.fr/trouver-un-mode-d-accueil
 // @grant       none
-// @version     1.1
+// @version     1.2
 // @author      -
 // @description 29/04/2021 à 13:50:07
 // @grant       GM_addStyle
@@ -65,7 +65,7 @@ function ButtonClickAction (zEvent) {
     const regex = /(.*) (\d{5}) (.*)/g;
     adresseSplit = regex.exec(data.adresse)
     
-    result.push(data.nom + separator + adresseSplit[1] + separator + data.codePostal + separator + adresseSplit[3] + separator + data.telephone + separator + data.mail)
+    result.push(data.nom + separator + adresseSplit[1] + separator + adresseSplit[2] + separator + adresseSplit[3] + separator + data.telephone + separator + data.mail)
   }
     download("export.csv", result.join('\n'))
     //document.getElementsByClassName('btn-more-results')[0]

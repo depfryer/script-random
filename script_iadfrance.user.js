@@ -94,9 +94,9 @@ function getInfoPeople(people) {
      
   ville = people.getElementsByClassName('agent_card_location')[0].textContent.replaceAll(whitespace, ' ')
   try {
-    note = people.getElementsByClassName('flex immodvisor-rating items-center')[0]
+    note = people.getElementsByClassName('immodvisor-rating')[0].children[1].textContent.replaceAll(whitespace, ' ')
     note = parseFloat(note.replaceAll(',', '.'))
-    nbavis = people.getElementsByClassName('immodvisor-comments text-grey-3 text-none')[0]
+    nbavis = people.getElementsByClassName('immodvisor-comments')[0].textContent.replaceAll(whitespace, ' ')
     nbavis = parseInt(nbavis.replaceAll('(', ''))
   }
   catch(error){

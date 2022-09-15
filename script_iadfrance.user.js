@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://www.iadfrance.fr/trouver-un-conseiller/*
 // @grant       GM_addStyle
-// @version    1.0
+// @version    1.1
 // downloadURL https://github.com/depfryer/script-random/raw/main/script_iadfrance.user.js
 // updateURL https://github.com/depfryer/script-random/raw/main/script_iadfrance.user.js
 // ==/UserScript==

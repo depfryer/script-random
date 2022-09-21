@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://www.iadfrance.fr/trouver-un-conseiller/*
 // @grant       GM_addStyle
-// @version    1.1
+// @version    1.2
 // @downloadURL https://github.com/depfryer/script-random/raw/main/script_iadfrance.user.js
 // @updateURL https://github.com/depfryer/script-random/raw/main/script_iadfrance.user.js
 // ==/UserScript==
@@ -58,7 +58,7 @@ function getNombreClient(){
 
 function clickonelemet(nbclick) {
   return new Promise(resolve => {
-    i = 0
+    i = 40
       let itr = setInterval(() => {
         console.log('aaaa')
         old_lenght = 0
@@ -78,7 +78,7 @@ function clickonelemet(nbclick) {
           if (i>nbclick) {
             clearInterval(itr)
             resolve()
-          } 
+          }
         }
       }, 500);
         return 1
@@ -91,7 +91,7 @@ function clickonelemet(nbclick) {
 function getInfoPeople(people) {
   whitespace = /\s{2,}/ig;
   nom = people.getElementsByClassName('agent_name')[0].textContent.replaceAll(whitespace, ' ')
-     
+
   ville = people.getElementsByClassName('agent_card_location')[0].textContent.replaceAll(whitespace, ' ')
   try {
     note = people.getElementsByClassName('immodvisor-rating')[0].children[1].textContent.replaceAll(whitespace, ' ')
@@ -125,7 +125,7 @@ async function ButtonClickAction (zEvent) {
   a = clickonelemet(nbclick)
   console.log(a)
   a.then(resp =>{
-    
+
     setTimeout(() =>{
     console.log('BBBB')
     r = document.getElementById('js--results')
@@ -133,7 +133,7 @@ async function ButtonClickAction (zEvent) {
     elements = []
     for (let j = 0; j < r.childElementCount; j++) {
       child1 = r.children[j]
-      
+
       for(let k = 0; k < child1.childElementCount; k++){
         child2 = child1.children[k]
         res.push(getInfoPeople(child2))
@@ -141,15 +141,16 @@ async function ButtonClickAction (zEvent) {
     }
     separator = '|'
 
-    result = [`Nom ${separator} Ville (CP)${separator} note ${separator} nombre avis ${separator} telephone ${separator} mail`]
+    result = [`Nom ${separator} Prenom ${separator} Ville (CP)${separator} note ${separator} nombre avis ${separator} telephone ${separator} mail`]
               // Nom| Prénom| Ville CP| Note| Nbre avis| Téléphone| mail|
   //     console.log(dataResult)
     for (let i = 0; i < res.length; i++){
       let data = res[i]
 
-
-      result.push(data['nom'] + separator + 
-                  data['ville'] + separator + 
+      prenom = data['nom'].split(" ")[1]
+      nom = data['nom'].split(" ")[2]
+      result.push(nom + separator + prenom + separator +
+                  data['ville'] + separator +
                   data['note'] + separator +
                   data['nbavis'] + separator +
                   data['telephone'])
@@ -161,7 +162,7 @@ async function ButtonClickAction (zEvent) {
   a.catch(err=>{
     console.log(err)
   })
-  
+
 }
 
 

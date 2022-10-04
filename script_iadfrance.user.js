@@ -140,7 +140,7 @@ async function ButtonClickAction (zEvent) {
     }
     separator = '|'
 
-    result = [`Nom ${separator} Ville (CP)${separator} Note ${separator} Nombre Avis ${separator} Telephone ${separator} Mail`]
+    result = [`Nom ${separator} Ville (CP)${separator} Telephone ${separator} Mail`]
               // Nom| Prénom| Ville CP| Note| Nbre avis| Téléphone| mail|
   //     console.log(dataResult)
     for (let i = 0; i < res.length; i++){
@@ -148,8 +148,6 @@ async function ButtonClickAction (zEvent) {
 
       result.push(data['nom'] + separator +
                   data['ville'] + separator +
-                  data['note'] + separator +
-                  data['nbavis'] + separator +
                   data['telephone'])
     }
       download("export.csv", result.join('\n'))

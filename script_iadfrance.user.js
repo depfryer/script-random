@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://www.iadfrance.fr/trouver-un-conseiller/*
 // @grant       GM_addStyle
-// @version    1.2
+// @version    1.3
 // @downloadURL https://github.com/depfryer/script-random/raw/main/script_iadfrance.user.js
 // @updateURL https://github.com/depfryer/script-random/raw/main/script_iadfrance.user.js
 // ==/UserScript==
@@ -58,9 +58,8 @@ function getNombreClient(){
 
 function clickonelemet(nbclick) {
   return new Promise(resolve => {
-    i = 40
+    i = 0
       let itr = setInterval(() => {
-        console.log('aaaa')
         old_lenght = 0
         r = document.getElementById('js--results').childElementCount
         if (old_lenght != r){
@@ -141,15 +140,13 @@ async function ButtonClickAction (zEvent) {
     }
     separator = '|'
 
-    result = [`Nom ${separator} Prenom ${separator} Ville (CP)${separator} note ${separator} nombre avis ${separator} telephone ${separator} mail`]
+    result = [`Nom ${separator} Ville (CP)${separator} Note ${separator} Nombre Avis ${separator} Telephone ${separator} Mail`]
               // Nom| Prénom| Ville CP| Note| Nbre avis| Téléphone| mail|
   //     console.log(dataResult)
     for (let i = 0; i < res.length; i++){
       let data = res[i]
 
-      prenom = data['nom'].split(" ")[1]
-      nom = data['nom'].split(" ")[2]
-      result.push(nom + separator + prenom + separator +
+      result.push(data['nom'] + separator +
                   data['ville'] + separator +
                   data['note'] + separator +
                   data['nbavis'] + separator +
